@@ -6,7 +6,7 @@ const Layout = (props: PropsWithChildren) => {
   return (
     <Fragment>
       <MainNav />
-      <main>{props.children}</main>
+      <main className="h-screen text-black ">{props.children}</main>
     </Fragment>
   );
 };
