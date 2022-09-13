@@ -3,9 +3,9 @@ import { useState } from 'react';
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
 
-  function switchAuthModeHandler() {
+  const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
-  }
+  };
 
   return (
     <section>

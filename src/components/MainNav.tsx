@@ -1,11 +1,11 @@
 import Link from 'next/link';
 
-function MainNav() {
+const MainNav = () => {
   return (
     <header>
       <Link href="/">
         <a>
-          <div>Next Auth</div>
+          <div> Auth</div>
         </a>
       </Link>
       <nav>
@@ -23,6 +23,6 @@ function MainNav() {
       </nav>
     </header>
   );
-}
+};
 
 export default MainNav;
