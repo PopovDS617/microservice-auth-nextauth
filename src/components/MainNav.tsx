@@ -1,23 +1,15 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-<<<<<<< HEAD
 const MainNav = () => {
-=======
-function MainNav() {
   const router = useRouter();
   const currentPath = router.pathname;
->>>>>>> new-styles
+
   return (
     <header className="w-full h-20 flex justify-between items-center bg-emerald-900 text-white text-2xl">
       <Link href="/">
-<<<<<<< HEAD
-        <a>
-          <div> Auth</div>
-=======
         <a className="w-3/12 ml-5">
           <div>auth microservice</div>
->>>>>>> new-styles
         </a>
       </Link>
       <nav>
