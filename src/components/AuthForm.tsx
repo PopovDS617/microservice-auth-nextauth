@@ -1,6 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
-const createUser = async (email, password) => {
+const createUser = async (email: string, password: string) => {
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     body: JSON.stringify({ email, password }),
@@ -23,6 +25,8 @@ const AuthForm = () => {
   const [emailText, setEmailText] = useState('');
   const [passwordText, setPasswordText] = useState('');
 
+  const router = useRouter();
+
   const emailTextHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setEmailText(event.target.value);
   };
@@ -37,11 +41,20 @@ const AuthForm = () => {
   const submitHandler = async (event: FormEvent) => {
     event.preventDefault();
     if (isLogin) {
-      //login
+      const result = await signIn('credentials', {
+        redirect: false,
+        email: emailText,
+        password: passwordText,
+      });
+
+      router.replace('/profile');
     } else {
       try {
         const result = await createUser(emailText, passwordText);
-        console.log(result);
+
+        if (result.error === null) {
+          router.replace('/profile');
+        }
       } catch (error) {
         console.log(error);
       }

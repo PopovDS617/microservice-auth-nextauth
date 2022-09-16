@@ -4,13 +4,15 @@
 
 #### 3. npm run dev
 
-#### 3. or try demo:  here link
-
+#### 3. or try demo: here link
 
 # About the project:
+
 - Language: Typescript
 - Front and back: NextJS
 - Styles: Tailwind
 - Database: MongoDB
 - Auth type: token (JWT)
-- Misc: password hashed with bcryptjs
+- Misc:
+- - password hashed with bcryptjs
+- - used Next-auth.js
