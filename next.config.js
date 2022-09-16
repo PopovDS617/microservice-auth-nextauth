@@ -4,8 +4,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
-    mongoUsername: 'popovds',
-    mongoPassword: '65D89YtDGhkLeVzN',
+    mongoDbPath:
+      'mongodb+srv://popovds:65D89YtDGhkLeVzN@auth-cluster.j4s4vys.mongodb.net/?retryWrites=true&w=majority',
   },
 };
 

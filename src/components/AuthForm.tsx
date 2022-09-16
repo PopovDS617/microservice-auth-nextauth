@@ -1,10 +1,51 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
+
+const createUser = async (email, password) => {
+  const response = await fetch('/api/auth/signup', {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Something went wrong!');
+  }
+
+  return data;
+};
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [emailText, setEmailText] = useState('');
+  const [passwordText, setPasswordText] = useState('');
+
+  const emailTextHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setEmailText(event.target.value);
+  };
+  const passwordTextHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setPasswordText(event.target.value);
+  };
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
+  };
+
+  const submitHandler = async (event: FormEvent) => {
+    event.preventDefault();
+    if (isLogin) {
+      //login
+    } else {
+      try {
+        const result = await createUser(emailText, passwordText);
+        console.log(result);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   return (
@@ -12,12 +53,16 @@ const AuthForm = () => {
       <h1 className="text-center m-5 text-3xl">
         {isLogin ? 'login' : 'sign up'}
       </h1>
-      <form className="flex flex-col justify-center items-center w-full">
+      <form
+        className="flex flex-col justify-center items-center w-full"
+        onSubmit={submitHandler}
+      >
         <div>
           <label className="block font-bold mt-3" htmlFor="email">
             your email
           </label>
           <input
+            onChange={emailTextHandler}
             className="p-1 w-full color-black text-inherit rounded-lg border-solid border-black border-2 text-left focus:outline-none"
             type="email"
             id="email"
@@ -29,6 +74,7 @@ const AuthForm = () => {
             your password
           </label>
           <input
+            onChange={passwordTextHandler}
             className="p-1 w-4/5 color-black text-inherit rounded-lg border-solid border-black border-2  text-left focus:outline-none"
             type="password"
             id="password"
