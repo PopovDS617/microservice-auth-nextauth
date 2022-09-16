@@ -1,7 +1,16 @@
-### add link to your MongoDB cluster to next.config.js (for example: `mongodb+srv://username:password@auth-cluster.j4s4vys.mongodb.net/?retryWrites=true&w=majority`)
+#### 1. add link to your MongoDB cluster to next.config.js (for example: `mongodb+srv://username:password@auth-cluster.j4s4vys.mongodb.net/?retryWrites=true&w=majority`)
 
-### npm install
+#### 2. npm install
 
-### npm run dev
+#### 3. npm run dev
 
-### or try demo:  
+#### 3. or try demo:  here link
+
+
+# About the project:
+- Language: Typescript
+- Front and back: NextJS
+- Styles: Tailwind
+- Database: MongoDB
+- Auth type: token (JWT)
+- Misc: password hashed with bcryptjs
