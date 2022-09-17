@@ -1,24 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
-
-const createUser = async (email: string, password: string) => {
-  const response = await fetch('/api/auth/signup', {
-    method: 'POST',
-    body: JSON.stringify({ email, password }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || 'Something went wrong!');
-  }
-
-  return data;
-};
+import { createUser } from '../lib/auth';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -46,15 +29,14 @@ const AuthForm = () => {
         email: emailText,
         password: passwordText,
       });
-
-      router.replace('/profile');
+      console.log(result);
+      if (result.error === null) {
+        router.replace('/profile');
+      }
     } else {
       try {
         const result = await createUser(emailText, passwordText);
-
-        if (result.error === null) {
-          router.replace('/profile');
-        }
+        console.log(result);
       } catch (error) {
         console.log(error);
       }

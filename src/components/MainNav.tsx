@@ -17,7 +17,7 @@ const MainNav = () => {
     <header className="w-full h-20 flex justify-between items-center bg-emerald-900 text-white text-2xl">
       <Link href="/">
         <a className="w-3/12 ml-5">
-          <div>auth microservice</div>
+          <div>next-auth microservice</div>
         </a>
       </Link>
       <nav>
