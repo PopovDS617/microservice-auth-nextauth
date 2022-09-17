@@ -29,8 +29,8 @@ const AuthForm = () => {
         email: emailText,
         password: passwordText,
       });
-      console.log(result);
-      if (result.error === null) {
+
+      if (result.error !== null) {
         router.replace('/profile');
       }
     } else {
@@ -40,6 +40,9 @@ const AuthForm = () => {
       } catch (error) {
         console.log(error);
       }
+      setEmailText('');
+      setPasswordText('');
+      setIsLogin(true);
     }
   };
 
@@ -61,6 +64,7 @@ const AuthForm = () => {
             className="p-1 w-full color-black text-inherit rounded-lg border-solid border-black border-2 text-left focus:outline-none"
             type="email"
             id="email"
+            value={emailText}
             required
           />
         </div>
@@ -73,6 +77,7 @@ const AuthForm = () => {
             className="p-1 w-4/5 color-black text-inherit rounded-lg border-solid border-black border-2  text-left focus:outline-none"
             type="password"
             id="password"
+            value={passwordText}
             required
           />
         </div>
