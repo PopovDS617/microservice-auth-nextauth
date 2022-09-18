@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { signIn } from 'next-auth/react';
+import { signIn } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import { createUser } from '../lib/auth';
 
