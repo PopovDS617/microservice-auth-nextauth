@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { signIn } from 'next-auth/react';
+import { signIn } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import { createUser } from '../lib/auth';
 
@@ -30,13 +30,12 @@ const AuthForm = () => {
         password: passwordText,
       });
 
-      if (result.error !== null) {
+      if (!result.error) {
         router.replace('/profile');
       }
     } else {
       try {
         const result = await createUser(emailText, passwordText);
-        console.log(result);
       } catch (error) {
         console.log(error);
       }

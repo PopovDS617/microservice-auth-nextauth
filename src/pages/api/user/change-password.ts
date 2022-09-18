@@ -1,4 +1,4 @@
-import { getSession } from 'next-auth/react';
+import { getSession } from 'next-auth/client';
 import { connectToMongo } from '../../../lib/db';
 import { comparePassword, hashPassword } from '../../../lib/auth';
 

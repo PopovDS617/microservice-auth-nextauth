@@ -1,6 +1,6 @@
 import UserProfile from '../components/UserProfile';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next/types';
-import { getSession } from 'next-auth/react';
+import { getSession } from 'next-auth/client';
 
 const ProfilePage = () => {
   return <UserProfile />;

@@ -1,19 +1,15 @@
 //catch-all route
 import NextAuth from 'next-auth';
 
-import CredentialsProvider from 'next-auth/providers/credentials';
+import Providers from 'next-auth/providers';
 import { connectToMongo } from '../../../lib/db';
 import { comparePassword } from '../../../lib/auth';
 
 export default NextAuth({
-  session: { strategy: 'jwt' },
-  secret: process.env.AUTH_SECRET,
+  session: { jwt: true },
+
   providers: [
-    CredentialsProvider({
-      credentials: {
-        email: { label: 'email' },
-        password: { label: 'password' },
-      },
+    Providers.Credentials({
       async authorize(credentials) {
         const client = await connectToMongo();
         const usersCollection = client.db().collection('users');
