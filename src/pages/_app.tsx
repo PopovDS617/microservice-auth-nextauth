@@ -3,11 +3,11 @@ import Head from 'next/head';
 import { AppProps } from 'next/app';
 import '../styles/index.css';
 import Layout from '../components/Layout';
-import { SessionProvider } from 'next-auth/react';
+import { Provider } from 'next-auth/client';
 
 function MyApp({
   Component,
-  pageProps: { session, ...pageProps },
+  pageProps,
 }: AppProps<{
   session: Session;
 }>) {
@@ -16,11 +16,11 @@ function MyApp({
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <SessionProvider session={session}>
+      <Provider session={pageProps.session}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </SessionProvider>
+      </Provider>
     </>
   );
 }

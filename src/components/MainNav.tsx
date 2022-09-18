@@ -1,17 +1,17 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useSession, signOut } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/client';
 
 const MainNav = () => {
-  const { data: session, status } = useSession();
+  const [session, loading] = useSession();
 
   const router = useRouter();
   const currentPath = router.pathname;
 
-  const logoutHandler = () => {
-    signOut({ redirect: false });
-    router.replace('/auth');
-  };
+  function logoutHandler() {
+    signOut();
+    router.push('/auth');
+  }
 
   return (
     <header className="w-full h-20 flex justify-between items-center bg-emerald-900 text-white text-2xl">
@@ -22,7 +22,7 @@ const MainNav = () => {
       </Link>
       <nav>
         <ul className="w-9/12 mr-10 flex justify-center items-center gap-5">
-          {!session && status !== 'loading' && (
+          {!session && !loading && (
             <li
               className={`p-2  rounded-lg hover:bg-emerald-100 hover:text-emerald-900 ${
                 currentPath === '/auth'

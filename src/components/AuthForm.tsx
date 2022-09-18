@@ -30,13 +30,12 @@ const AuthForm = () => {
         password: passwordText,
       });
 
-      if (result.error !== null) {
+      if (!result.error) {
         router.replace('/profile');
       }
     } else {
       try {
         const result = await createUser(emailText, passwordText);
-        console.log(result);
       } catch (error) {
         console.log(error);
       }
