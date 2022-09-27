@@ -5,7 +5,7 @@
 
 #### 3. npm run dev
 
-#### 3. or try demo: here link
+#### 3. or try demo: https://popov-pp2.vercel.app/
 
 # About the project:
 
